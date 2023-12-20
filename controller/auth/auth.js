@@ -15,3 +15,14 @@ router.post("/signup", async (req, res) => {
 });
 
 module.exports = router;
+/*
+
+const User = sequelize.define('user', {
+  user_id:{
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+})
+*/
