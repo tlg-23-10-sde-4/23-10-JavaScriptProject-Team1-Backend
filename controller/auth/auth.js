@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const User = require("../../models/user.js")
 
 router.post("/login", async (req, res) => {
   const { userName, password } = req.body;
@@ -26,4 +27,3 @@ const User = sequelize.define('user', {
   },
 })
 */
-
