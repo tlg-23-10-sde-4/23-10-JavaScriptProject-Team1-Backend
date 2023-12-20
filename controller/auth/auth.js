@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const User = require("../../models/user.js")
 
 router.post("/login", async (req, res) => {
   const { userName, password } = req.body;
@@ -15,14 +16,3 @@ router.post("/signup", async (req, res) => {
 });
 
 module.exports = router;
-/*
-
-const User = sequelize.define('user', {
-  user_id:{
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-})
-*/
