@@ -31,7 +31,16 @@ Comment.init(
 },
 {
     sequelize,
-    modelName: "comment"
+    modelName: "comment",
+    timestamps: true,
+    indexes: [
+     {
+        fields: ['user_id']
+    },
+    {
+        fields: ['game_id']
+    }   
+    ]
 }
 
 );
