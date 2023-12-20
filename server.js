@@ -20,12 +20,12 @@ app.use(routes);
 const startServer = async () => {
   try {
     // Ensure the database connection is established before starting the server
-    // await sequelize.authenticate();
+    await sequelize.authenticate();
     console.log("Connection to the database has been established successfully.");
 
     // await sequelize.sync();
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
 
     app.listen(PORT, () => {
       console.log(`Now listening on port: ${PORT}`);
