@@ -71,15 +71,7 @@ User.init(
     modelName: "user",
   }
 );
-//! creating user
-await User.create({ email: "oshay@email.com", password: "password" });
-//! finding the user
-const user = await User.findOne({
-  where: {
-    email: "oshay@email.com",
-  },
-});
-const isValidPassword = user.checkPassword("password");
-console.log(`Is the password valid? ${isValidPassword}`);
+
+
 
 module.exports = User;

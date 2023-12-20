@@ -11,8 +11,9 @@ router.post("/login", async (req, res) => {
 // POST /signUp
 router.post("/signup", async (req, res) => {
   const { email, username, password } = req.body;
-  console.table(email, username, password);
+  console.log(email, username, password);
   return res.status(200).json({ message: "congrats, you're KGB Kon-Bon Gamer" });
+
 });
 
 module.exports = router;
