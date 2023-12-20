@@ -5,6 +5,7 @@ const cors = require("cors");
 const routes = require("./controller");
 const corsoption = {
   origin: "http://localhost:3000",
+  credentials: true
 };
 
 const PORT = process.env.PORT || 3001;
@@ -25,7 +26,7 @@ const startServer = async () => {
 
     // await sequelize.sync();
 
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
 
     app.listen(PORT, () => {
       console.log(`Now listening on port: ${PORT}`);
