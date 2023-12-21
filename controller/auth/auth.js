@@ -50,9 +50,27 @@ router.post("/login", async (req, res) => {
 
 // POST /signUp
 router.post("/signup", async (req, res) => {
-  const { email, username, password } = req.body;
-  console.table(email, username, password);
-  return res.status(200).json({ message: "congrats, you're a KGB Kon-Bon Gamer" });
+  try {
+    // User.findOne({
+    //   where: {
+    //     email: req.body.email,
+    //   },
+    // }).then((user) => {
+    //   if (user != null) {
+    //     return res.status(400).json({ message: "You already have an account." });
+    //   }
+    // });
+
+    const newUser = User.create(req.body);
+    return res.status(200).json({ message: `Welcome ${req.body.username}` });
+  } catch (error) {
+    if (err.original.code === "ER_DUP_ENTRY") {
+      return res.status(400).json("Email Already Exist, Please Sign up with different email");
+    } else {
+      return res.status(400).json(err);
+    }
+    // return res.status(500).json({ message: `${error}` });
+  }
 });
 
 module.exports = router;
