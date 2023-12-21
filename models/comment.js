@@ -1,4 +1,5 @@
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require("../connection/connection.js")
 
 class Comment extends Model { }
     
@@ -22,10 +23,7 @@ Comment.init(
     },
     game_id: {
         type: DataTypes.INTEGER,
-        references: {
-            model: "game_model",
-            key: "id"
-        }
+        allowNull: false
 
     }
 },
@@ -33,14 +31,14 @@ Comment.init(
     sequelize,
     modelName: "comment",
     timestamps: true,
-    indexes: [
-     {
-        fields: ['user_id']
-    },
-    {
-        fields: ['game_id']
-    }   
-    ]
+    // indexes: [
+    //  {
+    //     fields: ['user_id']
+    // },
+    // {
+    //     fields: ['game_id']
+    // }   
+    // ]
 }
 
 );
