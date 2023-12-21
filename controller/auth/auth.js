@@ -1,51 +1,51 @@
 const router = require("express").Router();
-const  User  = require("../../models/user.js")
+const User = require("../../models/user.js");
 const jtoken = require("jsonwebtoken");
 
 // assign the body's request to the user object
 router.post("/login", async (req, res) => {
-  const { userEmail , password } = req.body;
-  console.log(userEmail , password)
+  const { userEmail, password } = req.body;
+  console.log(userEmail, password);
   try {
     // take the destructured body and filter through User object for matching email
     const user = await User.findOne({
-      where: {email: userEmail}
-    })
+      where: { email: userEmail },
+    });
     // error code handling based on response status
-    if(!user){
+    if (!user) {
       return res.status(400).json({
-        message: "Email not found!"
-      })
+        message: "Email not found!",
+      });
     }
-  
+
     // boolean value to check password validity before token creation
     const isValidPass = user.checkPassword(password);
-    if(!isValidPass) {
+    if (!isValidPass) {
       return res.status(401).json({
-        message: "Invalid credentials!"
-      })
+        message: "Invalid credentials!",
+      });
     }
     // after user is verified create the webtoken
     // process.env.JWT_SECRETKEY and change res.cookie "JWT" before deployment
-    const token = jtoken.sign({
-      userId: user.id
-    }, "superdupersecret", {
-      expiresIn: "1d"
-    })
-  
-    res.cookie("JWT", token, {
-      httpOnly: true
-    })
-   
-    return res.status(200).json({ message: "Login Successful"});
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({message: `${error}`})
-  }
+    const token = jtoken.sign(
+      {
+        userId: user.id,
+      },
+      "superdupersecret",
+      {
+        expiresIn: "1d",
+      }
+    );
 
-  
-  
-  
+    res.cookie("JWT", token, {
+      httpOnly: true,
+    });
+
+    return res.status(200).json({ message: "Login Successful" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: `${error}` });
+  }
 });
 
 // POST /signUp
