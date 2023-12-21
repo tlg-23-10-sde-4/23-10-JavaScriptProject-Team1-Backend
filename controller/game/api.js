@@ -1,6 +1,6 @@
 const router = require('express').Router();
 require("dotenv").config();
-const { Comment } = require('../../models')
+const { Comment, Rating } = require('../../models')
 const apiKey = process.env.RAWG_KEY
 
 router.get('/gameById/:id', async (req,res) => {
@@ -17,10 +17,14 @@ router.get('/gameById/:id', async (req,res) => {
         const comments = await Comment.findAll({
             where: { game_id: gameId },
         });
-
+        const rating = await Rating.findAll({
+            where: {
+                game_id: gameId
+            }
+        })
         const responseData = {
             ...gameData,
-            comments,
+            comments,rating
         };
 
         return res.status(200).json(responseData)

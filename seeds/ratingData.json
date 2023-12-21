@@ -1,0 +1,13 @@
+[
+    {
+        "star_rating": "Some Text",
+        "user_id": "1",
+        "game_id": "3498"
+    },
+
+    {
+        "star_rating": "Some More Text",
+        "user_id": "2",
+        "game_id": "3498"
+    }
+]

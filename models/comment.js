@@ -31,14 +31,8 @@ Comment.init(
     sequelize,
     modelName: "comment",
     timestamps: true,
-    // indexes: [
-    //  {
-    //     fields: ['user_id']
-    // },
-    // {
-    //     fields: ['game_id']
-    // }   
-    // ]
+    freezeTableName: true,
+    underscored: true
 }
 
 );
