@@ -25,8 +25,6 @@ const seedDatabase = async () => {
   console.log(users.length, "Users created.")
   console.log(rating.length, "Ratings created.")
   console.log(comments.length, "Comments created");
-  console.log(users.length, "Users created.");
-
 
   process.exit(0);
 };

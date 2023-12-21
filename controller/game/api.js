@@ -17,14 +17,15 @@ router.get('/gameById/:id', async (req,res) => {
         const comments = await Comment.findAll({
             where: { game_id: gameId },
         });
-        const rating = await Rating.findAll({
+        const konbon_rating = await Rating.findAll({
             where: {
                 game_id: gameId
             }
         })
         const responseData = {
             ...gameData,
-            comments,rating
+            comments,
+            konbon_rating
         };
 
         return res.status(200).json(responseData)

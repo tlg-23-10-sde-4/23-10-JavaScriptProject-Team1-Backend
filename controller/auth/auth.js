@@ -51,37 +51,15 @@ router.post("/login", async (req, res) => {
 // POST /signUp
 router.post("/signup", async (req, res) => {
   try {
-    // User.findOne({
-    //   where: {
-    //     email: req.body.email,
-    //   },
-    // }).then((user) => {
-    //   if (user != null) {
-    //     return res.status(400).json({ message: "You already have an account." });
-    //   }
-    // });
-
-    const newUser = User.create(req.body);
+    await User.create(req.body);
     return res.status(200).json({ message: `Welcome ${req.body.username}` });
-  } catch (error) {
-    if (err.original.code === "ER_DUP_ENTRY") {
-      return res.status(400).json("Email Already Exist, Please Sign up with different email");
+  } catch (err) {
+    if (err.original && err.original.code === "ER_DUP_ENTRY") {
+      return res.status(400).json({message: "Email Already Exists"});
     } else {
-      return res.status(400).json(err);
+      return res.status(400).json({message: "Error signing up"});
     }
-    // return res.status(500).json({ message: `${error}` });
   }
 });
 
 module.exports = router;
-/*
-
-const User = sequelize.define('user', {
-  user_id:{
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-})
-*/
