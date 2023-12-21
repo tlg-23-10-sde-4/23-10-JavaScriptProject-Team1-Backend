@@ -1,5 +1,3 @@
-rating.js
-
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../connection/connection.js")
 
@@ -15,7 +13,7 @@ Rating.init(
         },
         star_rating: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
             //do I need a default star rating? would null affect average?
         },
         user_id: {
@@ -27,24 +25,16 @@ Rating.init(
         },
         game_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: "game_model",
-                key: "id"
-            }
+            allowNull: false
         }
     },
-     {
+    {
         sequelize,
         timestamps: false,
         modelName: "rating",
-        indexes: [
-            {
-                fields: ['user_id']
-            },
-            {
-                fields: ['game_id']
-            }
-        ]
+        freezeTableName: true,
+        underscored: true
+
     }
 );
 

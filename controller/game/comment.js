@@ -10,7 +10,7 @@ router.post('/addComment', async (req, res) => {
             user_id: user_id,
             game_id: game_id
         })
-        res.status(200).json(newComment)
+        res.status(200).json({ message: "success" });
     } catch (error) {
         res.status(500).json({
             message: `${error}`
