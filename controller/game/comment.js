@@ -22,12 +22,12 @@ router.post('/addComment', async (req, res) => {
 router.get('/getCommentsByGame/:id', async (req, res) => {
     const game_id = req.params.id
     try {
-       const comments = await Comment.findAll({
-        where: {
-            game_id: game_id
-        }
-    })
-    res.status(200).json(comments); 
+        const comments = await Comment.findAll({
+            where: {
+                game_id: game_id
+            }
+        })
+        res.status(200).json(comments);
     } catch (error) {
         res.status(500).json({
             message: `${error}`
@@ -37,12 +37,11 @@ router.get('/getCommentsByGame/:id', async (req, res) => {
 
 router.delete('/deleteCommentsById/:id', async (req, res) => {
     const id = req.params.id
-    Comment.destroy
-    const comment = await Comment.destroy({
+    await Comment.destroy({
         where: {
             id: id
         }
     })
     res.status(200).json()
-} )
+})
 module.exports = router;

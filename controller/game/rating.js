@@ -33,6 +33,6 @@ router.get('/getRatingByGame/:id', async (req, res) => {
             message: `${error}`
         })
     }
-})
+});
 
 module.exports = router;
