@@ -6,26 +6,29 @@ const ratingData = require("./ratingdata.json")
 
 const seedDatabase = async () => {
 
-    await sequelize.sync({ force: true })
+  await sequelize.sync({ force: true })
 
-    const users = await User.bulkCreate(userData, {
-        individualHooks: true,
+  const users = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  const comments = await Comment.bulkCreate(commentData, {
+    returning: true,
+  });
+
+  const rating = await Rating.bulkCreate(ratingData, {
         returning: true
-    })
+    });
 
-    const comments = await Comment.bulkCreate(commentData, {
-        returning: true
-    })
+  console.log(comments.length, "Comments created")
+  console.log(users.length, "Users created.")
+  console.log(rating.length, "Ratings created.")
+  console.log(comments.length, "Comments created");
+  console.log(users.length, "Users created.");
 
-    const rating = await Rating.bulkCreate(ratingData, {
-        returning: true
-    })
 
-    console.log(comments.length, "Comments created")
-    console.log(users.length, "Users created.")
-    console.log(rating.length, "Ratings created.")
-
-    process.exit(0)
-}
+  process.exit(0);
+};
 
 seedDatabase();
