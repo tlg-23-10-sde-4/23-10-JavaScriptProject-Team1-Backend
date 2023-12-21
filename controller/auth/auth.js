@@ -25,6 +25,8 @@ router.post("/login", async (req, res) => {
         message: "Invalid credentials!",
       });
     }
+
+    console.log(user.id);
     // after user is verified create the webtoken
     // process.env.JWT_SECRETKEY and change res.cookie "JWT" before deployment
     const token = jtoken.sign(
@@ -38,7 +40,7 @@ router.post("/login", async (req, res) => {
     );
 
     res.cookie("JWT", token, {
-      httpOnly: true,
+      httpOnly: false,
     });
 
     return res.status(200).json({ message: "Login Successful" });
