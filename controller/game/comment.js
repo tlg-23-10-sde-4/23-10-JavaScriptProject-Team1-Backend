@@ -16,7 +16,6 @@ router.post('/addComment', async (req, res) => {
             message: `${error}`
         })
     }
-
 })
 
 router.get('/getCommentsByGame/:id', async (req, res) => {
