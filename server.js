@@ -4,7 +4,7 @@ const sequelize = require("./connection/connection.js");
 const cors = require("cors");
 const routes = require("./controller");
 const corsoption = {
-  origin: "http://localhost:3000",
+  origin: "*",
   credentials: true
 };
 
