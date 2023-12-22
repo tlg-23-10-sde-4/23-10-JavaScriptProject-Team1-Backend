@@ -32,6 +32,7 @@ router.post("/login", async (req, res) => {
     const token = jtoken.sign(
       {
         userId: user.id,
+        username: user.username,
       },
       "superdupersecret",
       {
